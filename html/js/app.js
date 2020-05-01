@@ -9,9 +9,19 @@
 			<div class="menu-items">
 				{{#elements}}
 				<div class="menu-item {{#selected}}selected{{/selected}}">
-					<span>{{{label}}}</span>
+					<span>{{{label}}} {{#submenu}}<img src="img/arrow_right.png" class="sub-menu" />{{/submenu}}</span>
 				</div>
 				{{/elements}}
+				{{#border}}
+					<div class="menu-border">
+						<span>{{current}} of {{number}}</span>
+					</div>
+				{{/border}}
+				{{#description}}
+					<div class="menu-description">
+						<span>{{{description}}}</span>
+					</div>
+				{{/description}}
 			</div>
 			<div class="menu_bg"></div>
 		</div>`;
@@ -93,6 +103,11 @@
 			for (let name in RDX_MENU.opened[namespace]) {
 				let menuData = RDX_MENU.opened[namespace][name];
 				let view = JSON.parse(JSON.stringify(menuData));
+				let selectedNumber = 0
+
+				if (typeof view.description != 'undefined') {
+					delete view.description
+				}
 
 				for (let i=0; i<menuData.elements.length; i++) {
 					let element = view.elements[i];
@@ -112,7 +127,20 @@
 
 					if (i == RDX_MENU.pos[namespace][name]) {
 						element.selected = true;
+						selectedNumber = (i + 1);
 					}
+
+					if (element.selected && (typeof element.description != 'undefined' && element.description != false)) {
+						view.description = [
+							{ "description": element.description }
+						];
+					}
+				}
+
+				if (typeof view.border == 'undefined' || view.border != false) {
+					view.border = [
+						{ "current": selectedNumber, "number": menuData.elements.length }
+					];
 				}
 
 				let menu = $(Mustache.render(MenuTpl, view))[0];

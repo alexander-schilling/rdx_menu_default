@@ -22,6 +22,7 @@ files {
 	'html/js/mustache.min.js',
 	'html/js/app.js',
 	'html/img/menu_bg.png',
+	'html/img/arrow_right.png',
 	'html/fonts/pdown.ttf',
 	'html/fonts/bankgothic.ttf',
 	'html/fonts/RDR/HapnaSlabSerif-DemiBold.eot',
