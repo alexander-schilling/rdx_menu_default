@@ -12,17 +12,17 @@
 					<span>{{{label}}} {{#submenu}}<img src="img/arrow_right.png" class="sub-menu" />{{/submenu}}</span>
 				</div>
 				{{/elements}}
-				{{#border}}
-					<div class="menu-border">
-						<span>{{current}} of {{number}}</span>
-					</div>
-				{{/border}}
-				{{#description}}
-					<div class="menu-description">
-						<span>{{{description}}}</span>
-					</div>
-				{{/description}}
 			</div>
+			{{#border}}
+				<div class="menu-border">
+					<span>{{current}} of {{number}}</span>
+				</div>
+			{{/border}}
+			{{#description}}
+				<div class="menu-description">
+					<span>{{{description}}}</span>
+				</div>
+			{{/description}}
 			<div class="menu_bg"></div>
 		</div>`;
 
